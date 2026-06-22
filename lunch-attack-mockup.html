@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunch Attack — Jaro &amp; Pavia, Iloilo | Your Favorite Bagnet in Town</title>
+<meta name="description" content="Bagnet, Crispy Pata, Rice Meals and more — Lunch Attack serves hearty Filipino comfort food in Jaro, Iloilo City and Pavia. Open daily. Sulit. Busog. Lunch Attack!">
+<meta name="keywords" content="Lunch Attack, bagnet Iloilo, crispy pata Pavia, Filipino food Jaro, rice meals Iloilo, Lunch Attack Pavia, Lunch Attack Jaro">
+<link rel="canonical" href="https://lunchattack.netlify.app/">
+
+<!-- Open Graph / Facebook / Messenger share preview -->
+<meta property="og:type" content="restaurant.menu">
+<meta property="og:title" content="Lunch Attack — Your Favorite Bagnet in Town">
+<meta property="og:description" content="Bagnet, Crispy Pata, Rice Meals and more. Two branches in Jaro and Pavia, Iloilo.">
+<meta property="og:url" content="https://lunchattack.netlify.app/">
+<meta property="og:locale" content="en_PH">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23D72638'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='900' font-size='16' fill='%23fff' text-anchor='middle'%3ELA%3C/text%3E%3C/svg%3E">
+
+<!-- Bootstrap 5 + Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --red:#D72638; --red-deep:#A81E2D;
+    --yellow:#F5C800; --yellow-deep:#D4AB00;
+    --char:#1C1410; --gold:#F2A33D; --gold-deep:#D6862A;
+    --cream:#FFFDF5; --ink:#2A1D16; --muted:#7C6B5C; --border:#EFE2D3;
+    --display:'Anton', sans-serif; --body:'Nunito Sans', sans-serif;
+  }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+  body{ font-family:var(--body); background:var(--cream); color:var(--ink); }
+  h1,h2,h3,.font-display{ font-family:var(--display); font-weight:400; text-transform:uppercase; letter-spacing:.01em; }
+  :focus-visible{ outline:3px solid var(--yellow); outline-offset:2px; }
+
+  /* colors */
+  .bg-char{ background-color:var(--char) !important; }
+  .bg-red{ background-color:var(--red) !important; }
+  .bg-yellow{ background-color:var(--yellow) !important; }
+  .text-red{ color:var(--red) !important; }
+  .text-yellow{ color:var(--yellow) !important; }
+  .text-muted-warm{ color:var(--muted) !important; }
+
+  /* buttons */
+  .btn{ transition:transform .15s ease, box-shadow .15s ease; }
+  .btn-yellow{ background:var(--yellow); color:var(--char); font-weight:800; border:0; box-shadow:0 5px 0 var(--yellow-deep); }
+  .btn-yellow:hover{ background:var(--yellow); color:var(--char); transform:translateY(-2px); }
+  .btn-yellow:active{ transform:translateY(2px); box-shadow:0 2px 0 var(--yellow-deep); }
+  .btn-outline-light-custom{ border:2px solid rgba(255,255,255,.5); color:#fff; font-weight:800; }
+  .btn-outline-light-custom:hover{ border-color:#fff; color:#fff; background:rgba(255,255,255,.1); }
+  .btn-red{ background:var(--red); color:#fff; font-weight:800; border:0; }
+  .btn-red:hover{ background:var(--red-deep); color:#fff; transform:translateY(-2px); }
+
+  /* navbar */
+  .navbar{ background:rgba(28,20,16,.96) !important; backdrop-filter:blur(8px); }
+  .navbar .nav-link{ color:#E9DED3; font-weight:700; font-size:.92rem; }
+  .navbar .nav-link:hover{ color:var(--yellow); }
+  .brand-mark{ width:36px; height:36px; border-radius:50%; background:var(--red); display:flex; align-items:center; justify-content:center; font-family:var(--display); color:#fff; font-size:.9rem; flex-shrink:0; }
+
+  /* hero */
+  .hero{ position:relative; overflow:hidden; background:radial-gradient(circle at 50% 38%, var(--red) 0%, var(--red-deep) 46%, var(--char) 100%); padding-top:90px; }
+  .hero-rays{ position:absolute; inset:0; opacity:.14; animation:spin 90s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .hero h1{ font-size:clamp(2.8rem,12vw,6.5rem); line-height:.92; color:#fff; }
+  .tagline{ font-family:var(--display); letter-spacing:.06em; color:rgba(255,255,255,.7); font-size:.8rem; }
+  .hero-badge{ font-size:.82rem; font-weight:800; }
+
+  /* eyebrow */
+  .eyebrow{ font-family:var(--display); letter-spacing:.08em; color:var(--red); font-size:.95rem; }
+  .eyebrow.on-dark{ color:var(--yellow); }
+
+  /* disclaimer banner */
+  .disclaimer-banner{ background:#FFF8E1; border:1px solid #F5C800; border-radius:10px; }
+  .disclaimer-banner i{ color:#D4AB00; }
+
+  /* best seller cards */
+  .bs-card{ border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:transform .15s ease, box-shadow .15s ease; background:#fff; }
+  .bs-card:hover{ transform:translateY(-4px); box-shadow:0 14px 28px -16px rgba(28,20,16,.3); }
+  .bs-card__art{ aspect-ratio:4/3; background:linear-gradient(160deg,var(--yellow),var(--yellow-deep)); display:flex; align-items:center; justify-content:center; position:relative; }
+  .bs-card__art i{ font-size:2.8rem; color:var(--char); opacity:.85; }
+  .bs-card__price{ font-family:var(--display); font-size:1.35rem; color:var(--red); }
+  .badge-new{ background:var(--red); color:#fff; font-size:.6rem; font-weight:800; text-transform:uppercase; padding:3px 8px; border-radius:999px; margin-left:6px; vertical-align:middle; }
+  .badge-hot{ background:var(--yellow); color:var(--char); font-size:.6rem; font-weight:800; text-transform:uppercase; padding:3px 8px; border-radius:999px; margin-left:6px; vertical-align:middle; }
+
+  /* menu photo */
+  .menu-photo-wrap img{ border-radius:14px; border:1px solid var(--border); }
+  .placeholder-photo{ aspect-ratio:3/4; border:2px dashed var(--border); border-radius:14px; background:#FBF4EA; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:30px; color:var(--muted); }
+  .placeholder-photo i{ font-size:2.2rem; color:var(--red); margin-bottom:10px; }
+
+  /* menu list */
+  .menu-section{ margin-bottom:40px; }
+  .menu-cat-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:14px; }
+  .menu-cat-head h3{ font-size:1.5rem; color:var(--red); white-space:nowrap; margin:0; }
+  .menu-cat-rule{ flex:1; height:2px; background:repeating-linear-gradient(90deg,var(--red) 0 8px,transparent 8px 16px); opacity:.4; }
+  .menu-item{ display:flex; justify-content:space-between; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px dashed var(--border); }
+  .menu-item__name{ font-weight:800; font-size:.97rem; }
+  .menu-item__note{ font-size:.82rem; color:var(--muted); margin-top:2px; }
+  .menu-item__price{ font-family:var(--display); font-size:1.1rem; white-space:nowrap; flex-shrink:0; }
+  .addon-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); gap:12px; }
+  .addon-item{ background:#fff; border:1px solid var(--border); border-radius:10px; padding:12px; text-align:center; }
+  .addon-item__name{ font-weight:800; font-size:.82rem; }
+  .addon-item__price{ font-family:var(--display); font-size:1rem; color:var(--red); margin-top:4px; }
+
+  /* inihaw notice */
+  .inihaw-notice{ background:var(--red); color:#fff; border-radius:8px; padding:10px 16px; font-weight:800; font-size:.88rem; display:inline-flex; align-items:center; gap:8px; margin-bottom:14px; }
+
+  /* branches */
+  .branch-card{ background:#fff; border:1px solid var(--border); border-radius:14px; padding:22px; transition:transform .15s ease; }
+  .branch-card:hover{ transform:translateY(-3px); }
+  .branch-num{ width:32px; height:32px; border-radius:50%; background:var(--red); color:#fff; font-family:var(--display); font-size:.85rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+  /* contact */
+  .contact-btn-link{ display:flex; align-items:center; gap:10px; padding:14px 20px; border-radius:10px; background:#fff; border:1px solid var(--border); font-weight:800; color:var(--ink); text-decoration:none; transition:transform .15s ease, border-color .15s ease; }
+  .contact-btn-link:hover{ transform:translateY(-2px); border-color:var(--red); color:var(--ink); }
+  .contact-btn-link i{ color:var(--red); font-size:1.2rem; }
+
+  /* edit disclaimer */
+  .edit-disclaimer{ background:var(--char); border-radius:14px; padding:26px; }
+  .edit-disclaimer h4{ color:var(--yellow); font-family:var(--display); font-size:1.2rem; }
+  .edit-disclaimer p,.edit-disclaimer li{ color:#C9BEB4; font-size:.9rem; }
+  .edit-disclaimer li{ margin-bottom:6px; }
+
+  /* map */
+  .map-frame{ border-radius:14px; overflow:hidden; border:1px solid var(--border); }
+
+  /* footer */
+  footer{ background:var(--char); color:#B9AC9E; }
+  footer a{ color:#B9AC9E; text-decoration:none; }
+  footer a:hover{ color:var(--yellow); }
+  footer hr{ border-color:rgba(255,255,255,.08); }
+
+  /* reveal */
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.is-visible{ opacity:1; transform:none; }
+  html:not(.js) .reveal{ opacity:1; transform:none; }
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');</script>
+
+<!-- =========== NAVBAR =========== -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top py-2">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#top">
+      <span class="brand-mark">LA</span>
+      <span class="font-display fs-5">LUNCH ATTACK</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-3">
+        <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#branches">Branches</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item mt-2 mt-lg-0">
+          <a class="btn btn-yellow btn-sm w-100" href="#menu">View Menu</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- =========== HERO =========== -->
+  <header class="hero text-center">
+    <svg class="hero-rays" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="#FFFFFF">
+        <g id="ray"><polygon points="300,300 320,0 280,0"/></g>
+        <use href="#ray" transform="rotate(20 300 300)"/><use href="#ray" transform="rotate(40 300 300)"/>
+        <use href="#ray" transform="rotate(60 300 300)"/><use href="#ray" transform="rotate(80 300 300)"/>
+        <use href="#ray" transform="rotate(100 300 300)"/><use href="#ray" transform="rotate(120 300 300)"/>
+        <use href="#ray" transform="rotate(140 300 300)"/><use href="#ray" transform="rotate(160 300 300)"/>
+        <use href="#ray" transform="rotate(180 300 300)"/><use href="#ray" transform="rotate(200 300 300)"/>
+        <use href="#ray" transform="rotate(220 300 300)"/><use href="#ray" transform="rotate(240 300 300)"/>
+        <use href="#ray" transform="rotate(260 300 300)"/><use href="#ray" transform="rotate(280 300 300)"/>
+        <use href="#ray" transform="rotate(300 300 300)"/><use href="#ray" transform="rotate(320 300 300)"/>
+        <use href="#ray" transform="rotate(340 300 300)"/>
+      </g>
+    </svg>
+    <div class="container position-relative py-5">
+      <p class="tagline mb-2">YOUR FAVORITE BAGNET IN TOWN!</p>
+      <h1 class="mb-2">LUNCH<br><span class="text-yellow">ATTACK</span></h1>
+      <p class="text-uppercase fw-bold mb-4" style="color:#FBE4E7; letter-spacing:.08em; font-size:.85rem;">SULIT. BUSOG. LUNCH ATTACK!</p>
+      <p class="mx-auto mb-4" style="max-width:46ch; color:#FBE4E7; font-size:1.05rem;">Bagnet, Crispy Pata, Rice Meals, and inihaw — hearty Filipino comfort food built for sharing, at prices that make sense.</p>
+      <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+        <a class="btn btn-yellow btn-lg px-4" href="#menu">View Menu</a>
+        <a class="btn btn-outline-light-custom btn-lg px-4" href="#branches">Find a Branch</a>
+      </div>
+      <div class="d-flex flex-wrap justify-content-center gap-4 mt-4">
+        <span class="hero-badge" style="color:#FBE4E7;"><i class="bi bi-fire text-yellow me-1"></i>Bagnet Specialists</span>
+        <span class="hero-badge" style="color:#FBE4E7;"><i class="bi bi-people-fill text-yellow me-1"></i>Good for Groups</span>
+        <span class="hero-badge" style="color:#FBE4E7;"><i class="bi bi-geo-alt-fill text-yellow me-1"></i>2 Branches in Iloilo</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========== BEST SELLERS =========== -->
+  <section class="py-5" id="bestsellers">
+    <div class="container">
+      <div class="reveal mb-4" style="max-width:600px;">
+        <p class="eyebrow mb-1">Crowd favorites</p>
+        <h2 class="fs-1">What everyone orders first.</h2>
+      </div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 reveal">
+
+        <div class="col">
+          <div class="bs-card h-100">
+            <div class="bs-card__art"><i class="bi bi-egg-fried"></i></div>
+            <div class="p-3">
+              <div class="fw-bold mb-1" style="font-size:.97rem;">Crispy Pata</div>
+              <div class="small text-muted-warm mb-2">Good for 4–5 pax</div>
+              <div class="bs-card__price">₱795</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="bs-card h-100">
+            <div class="bs-card__art"><i class="bi bi-fire"></i></div>
+            <div class="p-3">
+              <div class="fw-bold mb-1" style="font-size:.97rem;">Bagnet Kare Kare</div>
+              <div class="small text-muted-warm mb-2">Good for 3–4 pax</div>
+              <div class="bs-card__price">₱280</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="bs-card h-100">
+            <div class="bs-card__art"><i class="bi bi-water"></i></div>
+            <div class="p-3">
+              <div class="fw-bold mb-1" style="font-size:.97rem;">Whole Boneless Bangus</div>
+              <div class="small text-muted-warm mb-2">Good for 2–3 pax</div>
+              <div class="bs-card__price">₱180</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="bs-card h-100">
+            <div class="bs-card__art"><i class="bi bi-people-fill"></i></div>
+            <div class="p-3">
+              <div class="fw-bold mb-1" style="font-size:.97rem;">Bagnet Barkada w/ Atsara</div>
+              <div class="small text-muted-warm mb-2">Good for 2–3 pax</div>
+              <div class="bs-card__price">₱210</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========== FULL MENU =========== -->
+  <section class="py-5 bg-white" id="menu">
+    <div class="container">
+      <div class="reveal mb-4" style="max-width:600px;">
+        <p class="eyebrow mb-1">Full menu</p>
+        <h2 class="fs-1">Everything on the menu.</h2>
+      </div>
+
+      <div class="row g-5 reveal">
+
+        <!-- Left column: menu photos + ala carte + rice meals -->
+        <div class="col-12 col-lg-6">
+
+          <!-- Menu photos -->
+          <div class="row g-3 mb-4 menu-photo-wrap">
+            <div class="col-6">
+              <img src="menu.jpg" alt="Lunch Attack main menu" class="img-fluid w-100">
+            </div>
+            <div class="col-6">
+              <img src="menu1.jpg" alt="Lunch Attack inihaw menu" class="img-fluid w-100">
+            </div>
+          </div>
+
+          <!-- Ala Carte -->
+          <div class="menu-section">
+            <div class="menu-cat-head"><h3>Ala Carte</h3><div class="menu-cat-rule"></div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Bagnet Barkada w/ Atsara</div></div><div class="menu-item__price">₱210</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Bagnet Laing</div></div><div class="menu-item__price">₱180</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Bagnet Sisig w/ Egg</div></div><div class="menu-item__price">₱160</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Bagnet Bicol w/ Atsara</div></div><div class="menu-item__price">₱220</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Bagnet Kare Kare</div></div><div class="menu-item__price">₱280</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">10 pcs Lumpia Shanghai</div></div><div class="menu-item__price">₱120</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Whole Boneless Bangus</div></div><div class="menu-item__price">₱180</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Nilaga Halo</div></div><div class="menu-item__price">₱85</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Crispy Pata</div></div><div class="menu-item__price">₱795</div></div>
+          </div>
+
+          <!-- Rice Meals -->
+          <div class="menu-section">
+            <div class="menu-cat-head"><h3>Rice Meals</h3><div class="menu-cat-rule"></div></div>
+            <p class="small text-muted-warm mb-3"><i class="bi bi-info-circle me-1"></i>Egg Fried Rice upgrade: +₱15</p>
+            <div class="menu-item"><div><div class="menu-item__name">Bagnet, Egg &amp; Rice</div></div><div class="menu-item__price">₱150</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Bagnet Sisig, Egg &amp; Rice</div></div><div class="menu-item__price">₱150</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Bagnet Bicol, Egg &amp; Rice</div></div><div class="menu-item__price">₱155</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Backribs, Egg &amp; Rice</div></div><div class="menu-item__price">₱195</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Boneless Bangus, Egg &amp; Rice</div></div><div class="menu-item__price">₱135</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Beef Tapa Flakes, Egg &amp; Rice</div></div><div class="menu-item__price">₱115</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Bacon, Egg &amp; Rice</div></div><div class="menu-item__price">₱145</div></div>
+          </div>
+
+        </div>
+
+        <!-- Right column: suleats, snacks, inihaw, add ons -->
+        <div class="col-12 col-lg-6">
+
+          <!-- Suleats -->
+          <div class="menu-section">
+            <div class="menu-cat-head"><h3>Suleats</h3><div class="menu-cat-rule"></div></div>
+            <div class="menu-item"><div><div class="menu-item__name">2 pcs New Yorker, Egg &amp; Rice</div></div><div class="menu-item__price">₱105</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">2 pcs Hotdog, Egg &amp; Rice</div></div><div class="menu-item__price">₱90</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">5 pcs Longganisa, Egg &amp; Rice</div></div><div class="menu-item__price">₱85</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Corned Beef, Egg &amp; Rice</div></div><div class="menu-item__price">₱95</div></div>
+          </div>
+
+          <!-- Snacks -->
+          <div class="menu-section">
+            <div class="menu-cat-head"><h3>Snacks</h3><div class="menu-cat-rule"></div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Fries Overload</div></div><div class="menu-item__price">₱150</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">LA Chicken Wrap</div></div><div class="menu-item__price">₱155</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Truffle Pasta</div></div><div class="menu-item__price">₱160</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Chicken Pomodoro Pasta</div></div><div class="menu-item__price">₱160</div></div>
+          </div>
+
+          <!-- Inihaw -->
+          <div class="menu-section">
+            <div class="menu-cat-head"><h3>Inihaw</h3><div class="menu-cat-rule"></div></div>
+            <div class="inihaw-notice"><i class="bi bi-clock-fill"></i>Available 5PM–11PM only</div>
+            <div class="menu-item"><div><div class="menu-item__name">Liempo</div></div><div class="menu-item__price">₱135</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Chicken Paa</div></div><div class="menu-item__price">₱85</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Chicken Pecho</div></div><div class="menu-item__price">₱95</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Pork BBQ</div></div><div class="menu-item__price">₱35</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Longganisa</div></div><div class="menu-item__price">₱35</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">New Yorker</div></div><div class="menu-item__price">₱35</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Tender Juicy Hotdog</div></div><div class="menu-item__price">₱25</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Buchi</div></div><div class="menu-item__price">₱15</div></div>
+            <div class="menu-item"><div><div class="menu-item__name">Isaw</div></div><div class="menu-item__price">₱15</div></div>
+          </div>
+
+          <!-- Add Ons -->
+          <div class="menu-section mb-0">
+            <div class="menu-cat-head"><h3>Add Ons</h3><div class="menu-cat-rule"></div></div>
+            <div class="addon-grid">
+              <div class="addon-item"><div class="addon-item__name">Plain Rice</div><div class="addon-item__price">₱20</div></div>
+              <div class="addon-item"><div class="addon-item__name">Egg Fried Rice</div><div class="addon-item__price">₱30</div></div>
+              <div class="addon-item"><div class="addon-item__name">Egg</div><div class="addon-item__price">₱15</div></div>
+              <div class="addon-item"><div class="addon-item__name">Atsara</div><div class="addon-item__price">₱20</div></div>
+              <div class="addon-item"><div class="addon-item__name">Lumpia <span class="d-block small text-muted-warm">(per piece)</span></div><div class="addon-item__price">₱15</div></div>
+              <div class="addon-item"><div class="addon-item__name">Hotdog</div><div class="addon-item__price">₱30</div></div>
+              <div class="addon-item"><div class="addon-item__name">New Yorker</div><div class="addon-item__price">₱35</div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========== BRANCHES =========== -->
+  <section class="py-5 bg-char" id="branches">
+    <div class="container">
+      <div class="reveal mb-4" style="max-width:600px;">
+        <p class="eyebrow on-dark mb-1">Find us</p>
+        <h2 class="fs-1 text-white">Two branches in Iloilo.</h2>
+      </div>
+      <div class="row g-4 reveal">
+        <div class="col-12 col-md-6">
+          <div class="branch-card">
+            <div class="d-flex gap-3 align-items-start mb-3">
+              <span class="branch-num">1</span>
+              <div>
+                <div class="fw-bold">Jaro, Iloilo City</div>
+                <div class="small text-muted-warm">Del Carmen St., Jaro, Iloilo City<br>(across Don Benito)</div>
+              </div>
+            </div>
+            <a class="btn btn-red w-100 btn-sm" href="https://maps.app.goo.gl/GX89tYpfUrTZ15899" target="_blank" rel="noopener"><i class="bi bi-signpost-2-fill me-1"></i>Get Directions</a>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="branch-card">
+            <div class="d-flex gap-3 align-items-start mb-3">
+              <span class="branch-num">2</span>
+              <div>
+                <div class="fw-bold">Pavia, Iloilo</div>
+                <div class="small text-muted-warm">Village 3, Whale Avenue, Block 54 Lot 3<br>Deca Homes, Pavia, Iloilo</div>
+              </div>
+            </div>
+            <a class="btn btn-red w-100 btn-sm" href="https://www.google.com/maps/search/?api=1&query=Block+54+Lot+3+Deca+Homes+Village+3+Whale+Ave+Jibao-an+Pavia+Iloilo" target="_blank" rel="noopener"><i class="bi bi-signpost-2-fill me-1"></i>Get Directions</a>
+          </div>
+        </div>
+
+        <!-- Google Maps embed pointing to Pavia branch (Charles's neighbor) -->
+        <div class="col-12 reveal">
+          <div class="ratio ratio-21x9 map-frame">
+            <iframe
+              src="https://www.google.com/maps?q=Block+54+Lot+3,+Deca+Homes,+Village+3,+Whale+Ave,+Jibao-an,+Pavia,+Iloilo&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Lunch Attack Pavia Branch location map">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========== CONTACT =========== -->
+<section class="py-5" id="contact">
+  <div class="container">
+    <div class="reveal mb-4" style="max-width:600px;">
+      <p class="eyebrow mb-1">Get in touch</p>
+      <h2 class="fs-1">Order ahead or ask us anything.</h2>
+    </div>
+    <div class="d-flex flex-wrap gap-3 reveal mb-3">
+      <a class="contact-btn-link"
+         href="https://www.facebook.com/LAPavia/"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Visit Lunch Attack on Facebook">
+        <i class="bi bi-facebook"></i>
+        Facebook Page
+      </a>
+      <a class="contact-btn-link"
+         href="https://www.instagram.com/lunchattack.ilo/"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Visit Lunch Attack on Instagram">
+        <i class="bi bi-instagram"></i>
+        Instagram @lunchattack.ilo
+      </a>
+      <a class="contact-btn-link"
+         href="tel:09661734101"
+         aria-label="Call Lunch Attack">
+        <i class="bi bi-telephone-fill"></i>
+        0966 173 4101
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+  <!-- =========== WEBSITE EDITING DISCLAIMER =========== -->
+  <section class="py-5 bg-white" id="about-website">
+    <div class="container">
+      <div class="reveal" style="max-width:680px;">
+        <p class="eyebrow mb-1">About this website</p>
+        <h2 class="fs-2 mb-4">A note on prices and updates.</h2>
+        <div class="edit-disclaimer">
+          <h4 class="mb-3"><i class="bi bi-info-circle-fill me-2"></i>Important to know</h4>
+          <p class="mb-3">This is a static website — meaning all content (menu items, prices, hours) lives directly in the page itself. There's no admin panel or login where you can edit it yourself.</p>
+          <p class="mb-2 fw-bold" style="color:#E9DED3;">What this means for you:</p>
+          <ul class="mb-3">
+            <li>To update a price or add a new item, just message us — we'll make the change and republish the page, usually within the day.</li>
+            <li>Small changes (a price update, a new menu item) are quick and straightforward.</li>
+            <li>Bigger changes (a new section, a redesign) are quoted as a separate project.</li>
+          </ul>
+          <p style="color:#C9BEB4; font-size:.85rem;">Prices on this page are based on publicly available menu photos and may not reflect the most current rates. Please confirm directly with the branch for the latest pricing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- =========== FOOTER =========== -->
+<footer class="py-4">
+  <div class="container">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <div class="d-flex align-items-center gap-2 text-white font-display fs-5">
+        <span class="brand-mark" style="width:28px;height:28px;font-size:.7rem;">LA</span>
+        LUNCH ATTACK
+      </div>
+      <div class="d-flex gap-3 small">
+        <a href="https://www.facebook.com/LAPavia/" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/lunchattack.ilo/" target="_blank" rel="noopener">Instagram</a>
+        <a href="#menu">Menu</a>
+        <a href="#branches">Branches</a>
+      </div>
+    </div>
+    <hr>
+    <div class="d-flex flex-wrap justify-content-between gap-2 small">
+      <span>© 2026 Lunch Attack — Your Favorite Bagnet in Town!</span>
+      <span>Jaro, Iloilo City &amp; Pavia, Iloilo</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Scroll reveal
+  (function(){
+    if(!('IntersectionObserver' in window)){
+      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
